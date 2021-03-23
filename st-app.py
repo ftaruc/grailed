@@ -3,10 +3,12 @@ import numpy as np
 #import matplotlib.pyplot as plt
 import re
 import time
+import base64
 import sys
 import requests
 import datefinder
 import pickle
+import selenium
 #selenium
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
