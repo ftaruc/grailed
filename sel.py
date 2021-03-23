@@ -9,6 +9,7 @@ import requests
 import datefinder
 import pickle
 import selenium
+import os
 #selenium
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -27,7 +28,7 @@ from fake_useragent import UserAgent
 
 COOKIES_PATH = r"cookies.pkl"
 DIRECTORY_PATH = r"C:\Users\ferdi\Downloads\projects\grailed"
-WEBDRIVER_PATH = r"chromedriver.exe"
+WEBDRIVER_PATH = os.getcwd() + "/chromedriver.exe"
 
 #pip install --target "C:\Users\ferdi\AppData\Local\Programs\Python\Python39\Lib\site-packages"
 #alias python='winpty "C:\Users\ferdi\AppData\Local\Programs\Python\Python39/python.exe"'
@@ -52,8 +53,8 @@ def first_run():
     options = Options()
     options.add_argument("user-data-dir=selenium")
     url = "https://www.grailed.com/users/sign_up"
-    #driver = webdriver.Chrome("chromedriver.exe", options=options)
-    driver= webdriver.Chrome(options = options)
+    driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
+    #driver= webdriver.Chrome(options = options)
     driver.get(url)
     time.sleep(2)
 
@@ -102,7 +103,7 @@ def scrape(user_input, display_amount):
 
     url = "https://www.grailed.com/"
     #driver = webdriver.Chrome("chromedriver.exe", options=options)
-    driver= webdriver.Chrome(options = options)
+    driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
     driver.get(url)
 
     #load past cookies
@@ -157,7 +158,7 @@ def scrape_filter_sold(user_input, display_amount):
 
     url = "https://www.grailed.com/"
     #driver = webdriver.Chrome("chromedriver.exe", options=options)
-    driver= webdriver.Chrome(options = options)
+    driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
     driver.get(url)
 
     cookies = pickle.load(open(COOKIES_PATH, "rb"))
@@ -230,7 +231,7 @@ def scrape_seller(links, is_sold):
     options.add_argument("--disable-dev-shm-usage"); # overcome limited resource problems
     #options.add_argument("--no-sandbox");
     #driver = webdriver.Chrome("chromedriver.exe", options=options)
-    driver= webdriver.Chrome(options = options)
+    driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
 
     # column lists for dataframe
     username_list = []
@@ -477,7 +478,7 @@ def get_image(listing, is_sold):
     #print(str(userAgent))
     options.add_argument(f'user-agent={userAgent}')
     #driver = webdriver.Chrome("chromedriver.exe", options=options)
-    driver= webdriver.Chrome(options = options)
+    driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
     driver.get(total_link)
     image_link = driver.find_element_by_xpath(xpath).get_attribute("src")
     return image_link
