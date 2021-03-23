@@ -52,7 +52,8 @@ def first_run():
     options = Options()
     options.add_argument("user-data-dir=selenium")
     url = "https://www.grailed.com/users/sign_up"
-    driver = webdriver.Chrome("chromedriver.exe", options=options)
+    #driver = webdriver.Chrome("chromedriver.exe", options=options)
+    driver= webdriver.Chrome(options = options)
     driver.get(url)
     time.sleep(2)
 
@@ -100,7 +101,8 @@ def scrape(user_input, display_amount):
     options.add_argument(f'user-agent={userAgent}')
 
     url = "https://www.grailed.com/"
-    driver = webdriver.Chrome("chromedriver.exe", options=options)
+    #driver = webdriver.Chrome("chromedriver.exe", options=options)
+    driver= webdriver.Chrome(options = options)
     driver.get(url)
 
     #load past cookies
@@ -154,7 +156,8 @@ def scrape_filter_sold(user_input, display_amount):
     options.add_argument(f'user-agent={userAgent}')
 
     url = "https://www.grailed.com/"
-    driver = webdriver.Chrome("chromedriver.exe", options=options)
+    #driver = webdriver.Chrome("chromedriver.exe", options=options)
+    driver= webdriver.Chrome(options = options)
     driver.get(url)
 
     cookies = pickle.load(open(COOKIES_PATH, "rb"))
@@ -226,7 +229,8 @@ def scrape_seller(links, is_sold):
     options.add_argument("--disable-gpu"); # applicable to windows os only
     options.add_argument("--disable-dev-shm-usage"); # overcome limited resource problems
     #options.add_argument("--no-sandbox");
-    driver = webdriver.Chrome("chromedriver.exe", options=options)
+    #driver = webdriver.Chrome("chromedriver.exe", options=options)
+    driver= webdriver.Chrome(options = options)
 
     # column lists for dataframe
     username_list = []
@@ -472,7 +476,8 @@ def get_image(listing, is_sold):
     userAgent = ua.random
     #print(str(userAgent))
     options.add_argument(f'user-agent={userAgent}')
-    driver = webdriver.Chrome("chromedriver.exe", options=options)
+    #driver = webdriver.Chrome("chromedriver.exe", options=options)
+    driver= webdriver.Chrome(options = options)
     driver.get(total_link)
     image_link = driver.find_element_by_xpath(xpath).get_attribute("src")
     return image_link
@@ -575,7 +580,8 @@ def check_unlimited_scroll(display_amount, driver):
         options.add_argument("--disable-gpu"); # applicable to windows os only
         options.add_argument("--disable-dev-shm-usage"); # overcome limited resource problems
         #options.add_argument("--no-sandbox");
-        driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
+        #driver = webdriver.Chrome("chromedriver.exe", options=options)
+        driver= webdriver.Chrome(options = options)
         #link = "https://www.grailed.com/listings/20859074-supreme-supreme-box-logo-stickers-protection-sleeve-bogo"
         link = "https://www.grailed.com/listings/16759582-nike-x-vintage-nike-air-force-1"
         driver.get(link)
