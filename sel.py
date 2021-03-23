@@ -28,7 +28,7 @@ from fake_useragent import UserAgent
 
 COOKIES_PATH = r"cookies.pkl"
 DIRECTORY_PATH = r"C:\Users\ferdi\Downloads\projects\grailed"
-WEBDRIVER_PATH = os.getcwd() + "/chromedriver.exe"
+WEBDRIVER_PATH = os.getcwd() + "/chromedriver"
 
 #pip install --target "C:\Users\ferdi\AppData\Local\Programs\Python\Python39\Lib\site-packages"
 #alias python='winpty "C:\Users\ferdi\AppData\Local\Programs\Python\Python39/python.exe"'
