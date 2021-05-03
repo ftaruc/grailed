@@ -1,3 +1,7 @@
 chromium
 chromium-driver
-chromium-browser
+chromium-common
+libnss3
+libglib2.0
+libgconf
+libfontconfig1
