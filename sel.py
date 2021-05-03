@@ -10,11 +10,11 @@ import datefinder
 import pickle
 #selenium
 import selenium
-import chromedriver_binary
+#import chromedriver_binary
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver import Chrome
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import firefox
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -53,7 +53,7 @@ def first_run():
     options = Options()
     options.add_argument("user-data-dir=selenium")
     url = "https://www.grailed.com/users/sign_up"
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Firefox(options=options, executable_path="/home/appuser/.conda/bin/geckodriver")
     driver.get(url)
     time.sleep(2)
 
@@ -81,7 +81,7 @@ def first_run():
 
 def scrape(user_input, display_amount):
 
-    options = webdriver.ChromeOptions()
+    options = webdriver.FirefoxOptions()
     options.add_argument("--start-maximized")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("disable-infobars"); # disabling infobars
@@ -101,7 +101,7 @@ def scrape(user_input, display_amount):
     options.add_argument(f'user-agent={userAgent}')
 
     url = "https://www.grailed.com/"
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Firefox(options=options, executable_path="/home/appuser/.conda/bin/geckodriver")
     driver.get(url)
 
     #load past cookies
@@ -134,7 +134,7 @@ def scrape(user_input, display_amount):
     #final_df.to_csv(user_input + "-final.csv", index = False)
 
 def scrape_filter_sold(user_input, display_amount):
-    options = webdriver.ChromeOptions()
+    options = webdriver.FirefoxOptions()
     options.add_argument("--start-maximized")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("disable-infobars"); # disabling infobars
@@ -155,7 +155,7 @@ def scrape_filter_sold(user_input, display_amount):
     options.add_argument(f'user-agent={userAgent}')
 
     url = "https://www.grailed.com/"
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Firefox(options=options, executable_path="/home/appuser/.conda/bin/geckodriver")
     driver.get(url)
 
     cookies = pickle.load(open(COOKIES_PATH, "rb"))
@@ -212,7 +212,7 @@ def scrape_filter_sold(user_input, display_amount):
 def scrape_seller(links, is_sold):
     print("Scraping Seller...")
     # headless: so chrome doesn't open
-    options = webdriver.ChromeOptions()
+    options = webdriver.FirefoxOptions()
 
     from fake_useragent import UserAgent
     ua = UserAgent()
@@ -227,7 +227,7 @@ def scrape_seller(links, is_sold):
     options.add_argument("--disable-gpu"); # applicable to windows os only
     options.add_argument("--disable-dev-shm-usage"); # overcome limited resource problems
     #options.add_argument("--no-sandbox");
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Firefox(options=options, executable_path="/home/appuser/.conda/bin/geckodriver")
 
     # column lists for dataframe
     username_list = []
@@ -455,7 +455,7 @@ def get_image(listing, is_sold):
         xpath = "/html/body/div[9]/div/div[2]/div[2]/div/div/div[1]/div[2]/ul/li[1]/div/img"
     else:
         xpath = "/html/body/div[8]/div/div[2]/div[2]/div/div/div[1]/div[2]/ul/li[1]/div/img"
-    options = webdriver.ChromeOptions()
+    options = webdriver.FirefoxOptions()
     options.add_argument("--start-maximized")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("disable-infobars"); # disabling infobars
@@ -474,7 +474,7 @@ def get_image(listing, is_sold):
     userAgent = ua.random
     #print(str(userAgent))
     options.add_argument(f'user-agent={userAgent}')
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Firefox(options=options, executable_path="/home/appuser/.conda/bin/geckodriver")
     driver.get(total_link)
     image_link = driver.find_element_by_xpath(xpath).get_attribute("src")
     return image_link
@@ -564,7 +564,7 @@ def check_unlimited_scroll(display_amount, driver):
     return driver, display_amount
 
 def test_html():
-    options = webdriver.ChromeOptions()
+    options = webdriver.FirefoxOptions()
     from fake_useragent import UserAgent
     ua = UserAgent()
     userAgent = ua.random
@@ -577,7 +577,7 @@ def test_html():
     options.add_argument("--disable-gpu"); # applicable to windows os only
     options.add_argument("--disable-dev-shm-usage"); # overcome limited resource problems
     #options.add_argument("--no-sandbox");
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Firefox(options=options, executable_path="/home/appuser/.conda/bin/geckodriver")
     #link = "https://www.grailed.com/listings/20859074-supreme-supreme-box-logo-stickers-protection-sleeve-bogo"
     link = "https://www.grailed.com/listings/16759582-nike-x-vintage-nike-air-force-1"
     driver.get(link)

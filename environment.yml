@@ -1,0 +1,14 @@
+channels:
+  - conda-forge
+dependencies:
+  - firefox
+  - geckodriver
+  - selenium
+  - streamlit==0.81.0
+  - numpy==1.20.1
+  - altair==4.1.0
+  - fake_useragent==0.1.11
+  - datefinder==0.7.1
+  - pandas==1.2.3
+  - requests==2.25.1
+  - beautifulsoup4==4.9.3

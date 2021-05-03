@@ -1,7 +1,2 @@
-chromium
-chromium-driver
-chromium-common
-libnss3
-libglib2.0
-libgconf
-libfontconfig1
+firefox-esr
+xvfb
