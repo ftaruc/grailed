@@ -7,3 +7,4 @@ pandas==1.2.3
 requests==2.25.1
 beautifulsoup4==4.9.3
 chromedriver-binary==91.0.4472.19.0
+selenium==3.141.0 
