@@ -1,5 +1,6 @@
 channels:
   - conda-forge
+  - mlgill
 dependencies:
   - firefox
   - geckodriver
