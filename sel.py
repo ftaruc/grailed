@@ -108,8 +108,9 @@ def scrape(user_input, display_amount):
     import streamlit as st
 
     cookies = pickle.load(open(COOKIES_PATH, "rb"))
+    st.write(cookies)
+    print(cookies)
     for cookie in cookies:
-        st.write(cookies)
         driver.add_cookie(cookie)
 
     #Searching User Input
