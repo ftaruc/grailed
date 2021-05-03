@@ -8,9 +8,10 @@ dependencies:
   - streamlit
   - numpy
   - altair
-  - fake-useragent
   - datefinder
   - pandas
   - requests
   - beautifulsoup4
   - bs4
+  -pip:
+    - fake-useragent
