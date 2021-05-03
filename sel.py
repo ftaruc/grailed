@@ -60,8 +60,8 @@ def test_st():
     from selenium.webdriver.support import expected_conditions as EC
     from selenium.webdriver.support.ui import WebDriverWait
 
-    st.title("Test Selenium")
-    st.markdown("You should see some random Football match text below in about 21 seconds")
+    #st.title("Test Selenium")
+    #st.markdown("You should see some random Football match text below in about 21 seconds")
 
     firefoxOptions = Options()
     firefoxOptions.add_argument("--headless")
