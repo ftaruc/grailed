@@ -10,7 +10,7 @@ import pickle
 
 #bs4
 #from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
+#from fake_useragent import UserAgent
 
 import streamlit as st
 import altair as alt
