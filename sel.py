@@ -26,7 +26,7 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
-COOKIES_PATH = r"C:\Users\ferdi\Downloads\projects\grailed\cookies.pkl"
+COOKIES_PATH = "cookies.pkl"
 DIRECTORY_PATH = r"C:\Users\ferdi\Downloads\projects\grailed"
 #WEBDRIVER_PATH = r'C:\Users\ferdi\Downloads\projects\grailed\chromedriver.exe'
 
