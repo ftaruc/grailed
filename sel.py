@@ -10,7 +10,7 @@ import datefinder
 import pickle
 #selenium
 import selenium
-import chromedriver_binary
+#import chromedriver_binary
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import Chrome
@@ -28,7 +28,7 @@ from fake_useragent import UserAgent
 
 COOKIES_PATH = r"C:\Users\ferdi\Downloads\projects\grailed\cookies.pkl"
 DIRECTORY_PATH = r"C:\Users\ferdi\Downloads\projects\grailed"
-WEBDRIVER_PATH = r'C:\Users\ferdi\Downloads\projects\grailed\chromedriver.exe'
+#WEBDRIVER_PATH = r'C:\Users\ferdi\Downloads\projects\grailed\chromedriver.exe'
 
 #pip install --target "C:\Users\ferdi\AppData\Local\Programs\Python\Python39\Lib\site-packages"
 #alias python='winpty "C:\Users\ferdi\AppData\Local\Programs\Python\Python39/python.exe"'
