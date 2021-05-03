@@ -7,7 +7,7 @@ dependencies:
   - streamlit
   - numpy
   - altair
-  - fake_useragent
+  - fake-useragent
   - datefinder
   - pandas
   - requests
