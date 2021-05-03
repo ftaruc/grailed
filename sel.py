@@ -8,9 +8,8 @@ import sys
 import requests
 import datefinder
 import pickle
-import selenium
-import os
 #selenium
+import chromedriver_binary
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import Chrome
@@ -26,9 +25,9 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
-COOKIES_PATH = r"cookies.pkl"
+COOKIES_PATH = r"C:\Users\ferdi\Downloads\projects\grailed\cookies.pkl"
 DIRECTORY_PATH = r"C:\Users\ferdi\Downloads\projects\grailed"
-WEBDRIVER_PATH = os.getcwd() + "/chromedriver"
+WEBDRIVER_PATH = r'C:\Users\ferdi\Downloads\projects\grailed\chromedriver.exe'
 
 #pip install --target "C:\Users\ferdi\AppData\Local\Programs\Python\Python39\Lib\site-packages"
 #alias python='winpty "C:\Users\ferdi\AppData\Local\Programs\Python\Python39/python.exe"'
@@ -54,7 +53,6 @@ def first_run():
     options.add_argument("user-data-dir=selenium")
     url = "https://www.grailed.com/users/sign_up"
     driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
-    #driver= webdriver.Chrome(options = options)
     driver.get(url)
     time.sleep(2)
 
@@ -102,7 +100,6 @@ def scrape(user_input, display_amount):
     options.add_argument(f'user-agent={userAgent}')
 
     url = "https://www.grailed.com/"
-    #driver = webdriver.Chrome("chromedriver.exe", options=options)
     driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
     driver.get(url)
 
@@ -157,7 +154,6 @@ def scrape_filter_sold(user_input, display_amount):
     options.add_argument(f'user-agent={userAgent}')
 
     url = "https://www.grailed.com/"
-    #driver = webdriver.Chrome("chromedriver.exe", options=options)
     driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
     driver.get(url)
 
@@ -187,9 +183,9 @@ def scrape_filter_sold(user_input, display_amount):
     elif len(driver.find_elements_by_xpath(check_sold_2)) > 0:
         driver.find_elements_by_xpath(check_sold_2)[0].click()
     elif len(driver.find_elements_by_xpath(check_sold_3)) > 0:
-        driver.find_element_by_xpath(check_sold_3).click()
+        driver.find_element_by_xpath(check_sold_3)[0].click()
     else:
-        driver.find_elements_by_xpath(check_sold_4).click()
+        driver.find_elements_by_xpath(check_sold_4)[0].click()
     time.sleep(1)
     driver, display_amount = check_unlimited_scroll(display_amount, driver)
 
@@ -230,7 +226,6 @@ def scrape_seller(links, is_sold):
     options.add_argument("--disable-gpu"); # applicable to windows os only
     options.add_argument("--disable-dev-shm-usage"); # overcome limited resource problems
     #options.add_argument("--no-sandbox");
-    #driver = webdriver.Chrome("chromedriver.exe", options=options)
     driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
 
     # column lists for dataframe
@@ -295,28 +290,29 @@ def scrape_seller(links, is_sold):
 
         #description of listing
         try:
-            description = driver.find_element_by_xpath('//div[@class="listing-description"]').text
+            description = driver.find_element_by_xpath('//*[@id="Listing--Description"]/div/div').text
+            #print(description)
             desc_list.append(description) #description
-        except NoSuchElementException:
+        except UnicodeEncodeError:
             desc_list.append("NA")
 
         #links to their profile
         try:
-            profilelink=driver.find_element_by_xpath('//span[@class="Username"]/a').get_attribute("href")
+            profilelink = driver.find_element_by_xpath('//span[@class="Username"]/a').get_attribute("href")
             profile_links.append(profilelink) #profilelink
         except NoSuchElementException:
             profile_links.append("NA")
 
         #links to their feedback
         try:
-            feedbacklink=driver.find_element_by_xpath('//div[@class="-details"]/a').get_attribute("href")
+            feedbacklink = driver.find_element_by_xpath('//div[@class="-details"]/a').get_attribute("href")
             feedback_links.append(feedbacklink) #feedbacklink
         except NoSuchElementException:
             feedback_links.append("NA")
 
         #amount of followers
         try:
-            followercount=driver.find_element_by_xpath('//p[@class="-follower-count"]').text
+            followercount = driver.find_element_by_xpath('//p[@class="-follower-count"]').text
             amt_followercount.append(followercount) #followercount not working since you would have to go to profile
         except NoSuchElementException:
             amt_followercount.append("NA")
@@ -326,6 +322,8 @@ def scrape_seller(links, is_sold):
             full_size_desc.append(fullsize) #fullsize
         except NoSuchElementException:
             full_size_desc.append("NA")
+
+        #ADD HAS MEASUREMENTS HERE: //*[@id="ListingMeasurements"]/div/div[2] (check if it exists)
 
         try:
             na_shipping = driver.find_elements_by_xpath("//*[contains(text(), 'shipping')]")
@@ -359,13 +357,11 @@ def scrape_seller(links, is_sold):
 
 def merge_df(user_input, unsold_df, sold_df):
     combined_df = unsold_df.append(sold_df)
-    #combined_df.to_csv(DIRECTORY_PATH + "/data/" + user_input" + ".csv", index = False)
+    combined_df.to_csv(DIRECTORY_PATH + "/data/" + user_input + ".csv", index = False)
     return combined_df
-
 
 """
 HELPER FUNCTIONS
-
 """
 def extract_brand_name(container):
     brand_container = container.find_all("p", class_="listing-designer")
@@ -477,7 +473,6 @@ def get_image(listing, is_sold):
     userAgent = ua.random
     #print(str(userAgent))
     options.add_argument(f'user-agent={userAgent}')
-    #driver = webdriver.Chrome("chromedriver.exe", options=options)
     driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
     driver.get(total_link)
     image_link = driver.find_element_by_xpath(xpath).get_attribute("src")
@@ -567,31 +562,30 @@ def check_unlimited_scroll(display_amount, driver):
             break
     return driver, display_amount
 
-    def test_html():
-        options = webdriver.ChromeOptions()
-        from fake_useragent import UserAgent
-        ua = UserAgent()
-        userAgent = ua.random
-        options.add_argument(f'user-agent={userAgent}')
-        #options.add_argument('--headless')
-        options.add_argument('--lang=en_US')
-        options.add_argument("--start-maximized") #fullscreen
-        options.add_argument("disable-infobars"); # disabling infobars
-        options.add_argument("--disable-extensions"); # disabling extensions
-        options.add_argument("--disable-gpu"); # applicable to windows os only
-        options.add_argument("--disable-dev-shm-usage"); # overcome limited resource problems
-        #options.add_argument("--no-sandbox");
-        #driver = webdriver.Chrome("chromedriver.exe", options=options)
-        driver= webdriver.Chrome(options = options)
-        #link = "https://www.grailed.com/listings/20859074-supreme-supreme-box-logo-stickers-protection-sleeve-bogo"
-        link = "https://www.grailed.com/listings/16759582-nike-x-vintage-nike-air-force-1"
-        driver.get(link)
+def test_html():
+    options = webdriver.ChromeOptions()
+    from fake_useragent import UserAgent
+    ua = UserAgent()
+    userAgent = ua.random
+    options.add_argument(f'user-agent={userAgent}')
+    options.add_argument('--headless')
+    options.add_argument('--lang=en_US')
+    options.add_argument("--start-maximized") #fullscreen
+    options.add_argument("disable-infobars"); # disabling infobars
+    options.add_argument("--disable-extensions"); # disabling extensions
+    options.add_argument("--disable-gpu"); # applicable to windows os only
+    options.add_argument("--disable-dev-shm-usage"); # overcome limited resource problems
+    #options.add_argument("--no-sandbox");
+    driver = webdriver.Chrome(WEBDRIVER_PATH, options=options)
+    #link = "https://www.grailed.com/listings/20859074-supreme-supreme-box-logo-stickers-protection-sleeve-bogo"
+    link = "https://www.grailed.com/listings/16759582-nike-x-vintage-nike-air-force-1"
+    driver.get(link)
 
-        bs = BeautifulSoup(driver.page_source, 'html.parser')
+    bs = BeautifulSoup(driver.page_source, 'html.parser')
 
-        #t = driver.find_element_by_xpath("/html/body/div[16]/div/span[1]").text
-        t = driver.find_element_by_xpath("/html/body/div[16]/div/span[1]").text
-        #print(t)
+    #t = driver.find_element_by_xpath("/html/body/div[16]/div/span[1]").text
+    t = driver.find_element_by_xpath("/html/body/div[8]/div/div[2]/div[3]/div[10]/div/div").text
+    print(t)
 
 
 if __name__ == '__main__':
@@ -609,4 +603,6 @@ if __name__ == '__main__':
 
     unsold_df = scrape(input_name, amount_scrape)
     sold_df = scrape_filter_sold(input_name, amount_scrape)
-    merge_df(input_name, unsold_df, sold_df)
+    t = merge_df(input_name, unsold_df, sold_df)
+    t.to_csv("check_desc.csv")
+    #test_html()

@@ -1,11 +1,9 @@
-datefinder==0.7.1
-pandas==1.2.3
 streamlit==0.79.0
-fake_useragent==0.1.11
 numpy==1.20.1
 altair==4.1.0
+fake_useragent==0.1.11
+datefinder==0.7.1
+pandas==1.2.3
 requests==2.25.1
 beautifulsoup4==4.9.3
-selenium==3.141.0
-matplotlib==3.3.4
-bs4==0.0.1
+chromedriver-binary=91.0.4472.19.0
