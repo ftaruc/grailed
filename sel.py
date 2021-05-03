@@ -9,6 +9,7 @@ import requests
 import datefinder
 import pickle
 #selenium
+import selenium
 import chromedriver_binary
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
