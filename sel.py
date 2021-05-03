@@ -52,6 +52,7 @@ def test_st():
     URL = "https://www.unibet.fr/sport/football/europa-league/europa-league-matchs"
     XPATH = "//*[@class='ui-mainview-block eventpath-wrapper']"
     TIMEOUT = 20
+    
     import streamlit as st
     from selenium import webdriver
     from selenium.common.exceptions import TimeoutException
