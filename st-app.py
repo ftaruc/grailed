@@ -35,11 +35,11 @@ from pprint import pformat
 ######## INTRO AND HEADER ########
 
 header_html = "<img src='data:image/png;base64,{}' class='img-fluid'>".format(
-    utils.img_to_bytes("header.jpg"))
+    utils.img_to_bytes("images\header.jpg"))
 
 st.markdown(header_html, unsafe_allow_html = True)
 
-intro_markdown = utils.read_markdown_file("intro.md")
+intro_markdown = utils.read_markdown_file("markdowns\intro.md")
 
 st.markdown(intro_markdown, unsafe_allow_html = True)
 
@@ -70,9 +70,9 @@ st.sidebar.markdown("---")
 #details
 st.sidebar.markdown("ℹ️: ** Details **")
 desc_check = st.sidebar.checkbox("Dataset Description")
-desc_markdown = utils.read_markdown_file("data_description.md")
+desc_markdown = utils.read_markdown_file("markdowns\data_description.md")
 dict_check = st.sidebar.checkbox("Data Dictionary")
-dict_markdown = utils.read_markdown_file("data_dictionary.md")
+dict_markdown = utils.read_markdown_file("markdowns\data_dictionary.md")
 
 if desc_check:
     st.sidebar.markdown(desc_markdown, unsafe_allow_html=True)
@@ -88,7 +88,7 @@ st.sidebar.markdown("*Please* use this app at your own discretion, especially fo
 ########## MAIN PAGE ##############
 st.markdown("_")
 faq = st.beta_expander("FAQ:", expanded = True)
-faq_md = utils.read_markdown_file("faq.md")
+faq_md = utils.read_markdown_file("markdowns\faq.md")
 faq.markdown(faq_md, unsafe_allow_html = True)
 
 

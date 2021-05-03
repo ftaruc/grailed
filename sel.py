@@ -1,4 +1,4 @@
-#Import packages
+##PACKAGES
 import pandas as pd
 import numpy as np
 #import matplotlib.pyplot as plt
@@ -10,7 +10,6 @@ import datefinder
 import pickle
 #selenium
 import selenium
-#import chromedriver_binary
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import firefox
@@ -22,25 +21,16 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-#bs4
+#bs4/other website stuff
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
 COOKIES_PATH = "cookies.pkl"
 DIRECTORY_PATH = r"C:\Users\ferdi\Downloads\projects\grailed"
 #WEBDRIVER_PATH = r'C:\Users\ferdi\Downloads\projects\grailed\chromedriver.exe'
-
 #pip install --target "C:\Users\ferdi\AppData\Local\Programs\Python\Python39\Lib\site-packages"
 #alias python='winpty "C:\Users\ferdi\AppData\Local\Programs\Python\Python39/python.exe"'
-
 #driver.get_screenshot_as_file(r"C:\Users\ferdi\Downloads\projects\grailed\screenshot.png") -> Use to troubleshoot selenium
-"""
-FUTURE PLANS
-
-* add follower count as a feature
-* can add average feedback as well from profile
-"""
-
 #############################################################
 
 """
@@ -48,6 +38,8 @@ You need to log-in to a Grailed Account to access all the filters to see past li
 This function saves the cookies so it can be accessed in the future.
 """
 
+
+## This is the function you made, @fanilo
 def test_st():
     URL = "https://www.unibet.fr/sport/football/europa-league/europa-league-matchs"
     XPATH = "//*[@class='ui-mainview-block eventpath-wrapper']"
@@ -84,7 +76,6 @@ def test_st():
     driver.quit()
 
 def first_run():
-    ##Initialize Selenium
     options = Options()
     options.add_argument("--headless")
     options.add_argument("user-data-dir=selenium")
