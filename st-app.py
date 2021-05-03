@@ -62,7 +62,7 @@ st.sidebar.markdown("*Graph Domain Filters (x-axis range)*")
 domain_input1 = st.sidebar.text_input(label="Enter Starting Date (in MM-DD-YYYY format)")
 domain_input2 = st.sidebar.text_input(label="Enter Ending Date (in MM-DD-YYYY format)")
 #TESTING PURPOSES
-if st.sidebar.button("test"):
+if st.sidebar.button("test fanilo's function here"):
     sel.test_st()
 
 st.sidebar.markdown("---")
