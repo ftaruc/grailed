@@ -51,7 +51,7 @@ This function saves the cookies so it can be accessed in the future.
 def first_run():
     ##Initialize Selenium
     options = Options()
-    firefoxOptions.add_argument("--headless")
+    options.add_argument("--headless")
     options.add_argument("user-data-dir=selenium")
     url = "https://www.grailed.com/users/sign_up"
     driver = webdriver.Firefox(options=options, executable_path="/home/appuser/.conda/bin/geckodriver")
