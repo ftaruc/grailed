@@ -109,7 +109,7 @@ def scrape(user_input, display_amount):
 
     cookies = pickle.load(open(COOKIES_PATH, "rb"))
     st.write(cookies)
-    print(cookies)
+    #print(cookies)
     for cookie in cookies:
         driver.add_cookie(cookie)
 

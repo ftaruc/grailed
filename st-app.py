@@ -62,6 +62,10 @@ st.sidebar.markdown("*Graph Domain Filters (x-axis range)*")
 domain_input1 = st.sidebar.text_input(label="Enter Starting Date (in MM-DD-YYYY format)")
 domain_input2 = st.sidebar.text_input(label="Enter Ending Date (in MM-DD-YYYY format)")
 st.sidebar.markdown("---")
+#TESTING PURPOSES
+if st.sidebar.button("test")):
+    sel.first_run()
+
 #details
 st.sidebar.markdown("ℹ️: ** Details **")
 desc_check = st.sidebar.checkbox("Dataset Description")
