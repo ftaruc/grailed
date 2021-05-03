@@ -13,5 +13,7 @@ dependencies:
   - requests
   - beautifulsoup4
   - bs4
+  - pip
   - pip:
     - fake-useragent
+    - fake_useragent
