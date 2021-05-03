@@ -65,9 +65,9 @@ def first_run():
     og_logxpath = "/html/body/div[3]/div[7]/div/div/div[2]/div/div/p[2]/a"
     login_xpath = "/html/body/div[3]/div[7]/div/div/div[2]/div/div/button[4]"
     driver.find_element_by_xpath(og_logxpath).click()
-    time.sleep(1)
+    time.sleep(5)
     driver.find_element_by_xpath(login_xpath).click()
-    time.sleep(1)
+    time.sleep(5)
 
     email_xpath = "/html/body/div[3]/div[7]/div/div/div[2]/div/div/form/div[1]/input"
     pw_xpath = "/html/body/div[3]/div[7]/div/div/div[2]/div/div/form/div[2]/input"
