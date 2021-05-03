@@ -106,8 +106,8 @@ def scrape(user_input, display_amount):
 
     #load past cookies
     cookies = pickle.load(open(COOKIES_PATH, "rb"))
-    #for cookie in cookies:
-        #driver.add_cookie(cookie)
+    for cookie in cookies:
+        driver.add_cookie(cookie)
 
     #Searching User Input
     driver.find_element_by_id("globalheader_search").send_keys(user_input + Keys.RETURN)
