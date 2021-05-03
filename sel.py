@@ -51,8 +51,8 @@ This function saves the cookies so it can be accessed in the future.
 def test_st():
     URL = "https://www.unibet.fr/sport/football/europa-league/europa-league-matchs"
     XPATH = "//*[@class='ui-mainview-block eventpath-wrapper']"
-    TIMEOUT = 20
-    
+    TIMEOUT = 40
+
     import streamlit as st
     from selenium import webdriver
     from selenium.common.exceptions import TimeoutException
@@ -60,9 +60,6 @@ def test_st():
     from selenium.webdriver.firefox.options import Options
     from selenium.webdriver.support import expected_conditions as EC
     from selenium.webdriver.support.ui import WebDriverWait
-
-    #st.title("Test Selenium")
-    #st.markdown("You should see some random Football match text below in about 21 seconds")
 
     firefoxOptions = Options()
     firefoxOptions.add_argument("--headless")
