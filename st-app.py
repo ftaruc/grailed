@@ -63,7 +63,7 @@ domain_input1 = st.sidebar.text_input(label="Enter Starting Date (in MM-DD-YYYY 
 domain_input2 = st.sidebar.text_input(label="Enter Ending Date (in MM-DD-YYYY format)")
 #TESTING PURPOSES
 if st.sidebar.button("test"):
-    sel.first_run()
+    sel.test_st()
 
 st.sidebar.markdown("---")
 
